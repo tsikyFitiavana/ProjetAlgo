@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+ <form>
+     <input type="text" name="" id="envoyeViaUtilisateur" placeholder="entrez votre nom en MAJ">
+     <input type="number" name="" id="cles" placeholder="choisissez un nombre comme clés">
+     <button type="button" onclick="changeString()">Envoyer</button>
+ </form>
+ <p id ="vraisAlphabet"></p>
+ <p id ="vraisNom"></p>
+ <p id ="alphabetCrypter"></p>
+ 
+ <p id ="nomCrypter"></p>
+    <script>
+        
+       var a=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+       var b=[];
+       var n;
+       //var entree=["B","O","N","J","O","U","R"];
+       //var sortie=[];
+       var nouEntree;
+       
+       var nouSortie = [];
+       var ok = "";
+       
+            
+       function changeString(){
+        n  = parseInt(document.getElementById('cles').value)
+        for(var i=0 ;i<a.length;i++){
+                if(i <(a.length-n)){
+                    b [i]=a[i+n];
+                }else{
+                    b[i]=a[i- (a.length-n)];
+                }
+            }
+            var vraisAlphabet = document.getElementById('vraisAlphabet');
+            var alphabetCrypter = document.getElementById('alphabetCrypter');
+
+            vraisAlphabet.innerHTML = 'vrais alphabet : ' + a.join(' ');
+            alphabetCrypter.innerHTML = ' alphabet crypter : ' + b.join(' ');
+
+     /*  
+      //document.write("a:",a,"<br>");
+      //document.write("b:",b,"<br>","<br>");
+       function crypteMessage(){
+
+            for(var i = 0;i<entree.length;i++){
+                for(var j = 0;j<a.length;j++){
+                    if(entree[i] == a[j]){
+                        sortie[i]=b[j];
+                    }
+                }
+            }
+       }
+       crypteMessage();
+       //document.write("entree:",entree,"<br>");
+       //document.write("sortie:",sortie,"<br>");
+*/
+            nouEntree = document.getElementById('envoyeViaUtilisateur').value;
+            
+            var ajoutParagraphe = document.getElementById('vraisNom');
+            var nomCrypter = document.getElementById('nomCrypter');
+            
+            ajoutParagraphe.innerHTML = 'votre vrais non est : ' + nouEntree;
+            var strArray = nouEntree.split('');
+            for(var i = 0;i<strArray.length;i++){
+                for(var j = 0;j<a.length;j++){
+                    if(strArray[i] == a[j]){
+                        nouSortie[i]=b[j];
+                    }
+                }
+            }
+            
+            
+            ok = nouSortie.join('');
+            nomCrypter.innerHTML = 'en mode crypte c\'est : ' + ok +' en utilisant ' + n + ' comme cles';
+            //console.log("nouEntree:",nouEntree,"<br>");
+            //console.log("nouSortie:",ok);
+       }
+       changeString();
+    </script>
+</body>
+</html>
